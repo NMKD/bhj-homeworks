@@ -1,27 +1,21 @@
 const killMoles = document.getElementById('dead');
 const nonHole = document.getElementById('lost');
 
-// const hasMole = document.querySelector('.hole_has-mole');
-// const emptyHole = document.querySelector('.hole');
-
-
-// hasMole.onclik = function() {
-//     if (hasMole.classList.contains('hole_has-mole')) {
-//         return killMoles.textContent++;
-//     }
-// }
-// emptyHole.onclik = function() {
-//     if (hasMole.classList.contains('hole')) {
-//         return nonHole.textContent++;
-//     }
-// }
-
+//почему все таки мы используем цикл а внутри него функция getHole,а не на оборот
 getHole = index => document.getElementById(`hole${index}`);
-// for (index = 1; index < 9; index++ )
-getHole.onclick = function() {
-    if (getHole.classList.contains('hole_has-mole')) {
-        return killMoles.textContent++;
-    } else {
-        return nonHole.textContent++;
+for (index = 1; index < 9; index++) {
+    getHole(index).onclick = function() {
+        if (getHole(index).classList.contains('hole_has-mole')) {
+            killMoles.textContent++;
+        } else {
+            nonHole.textContent++;
+        }
     }
 }
+//не срабатывает обнуление
+// if (killMoles.textContent === 10 || nonHole.textContent === 10) {
+//     killMoles.textConten = 0;
+//     nonHole.textContent = 0;
+// }
+
+//кстати не синхронно с картинкой класс становится на нужный нам div

@@ -4,7 +4,7 @@ const nonHole = document.getElementById('lost');
 //почему все таки мы используем цикл а внутри него функция getHole,а не на оборот
 getHole = index => document.getElementById(`hole${index}`);
 for (index = 1; index < 9; index++) {
-    getHole(index).onclick = function() {
+    this.onclick = function() {
         if (getHole(index).classList.contains('hole_has-mole')) {
             killMoles.textContent++;
         } else {

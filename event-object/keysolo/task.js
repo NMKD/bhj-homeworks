@@ -17,6 +17,18 @@ class Game {
   }
 
   registerEvents() {
+    let symbol = Array.from(document.querySelectorAll('.symbol'));
+    this.keyPress = document.addEventListener('keydown', (evt) => {
+      for (let key of symbol) {
+        let strKey = String.fromCharCode(evt.keyCode);
+        if (strKey === key.textContent) {
+          this.success();
+        } else {
+          this.fail();
+        }
+      }
+    });
+
     /*
       TODO:
       Написать обработчик события, который откликается
@@ -25,6 +37,8 @@ class Game {
       При неправильном вводе символа - this.fail();
      */
   }
+  
+  
 
   success() {
     this.currentSymbol.classList.add('symbol_correct');

@@ -1,14 +1,23 @@
 const menuLink = document.querySelectorAll('.menu__link');
-const menuSub = document.querySelector('.menu_sub');
+const menuSub = document.querySelectorAll('.menu_sub');
+const arrMenuSub = Array.from(menuSub);
 const arrMenuLinks = Array.from(menuLink);
-for (let i = 0; i < arrMenuLinks.length; i++) {
-    const arrMenuLink = arrMenuLinks[i];
-    arrMenuLink.onclick = () => {
-       event.preventDefault();
-       //добавляем класс
-       const nextElements = arrMenuLink.nextElementSibling;
-       console.log(nextElements);
-       //как сказать чтобы переключал классы между собой? а не по клику на ссулку 
-       nextElements.classList.toggle('menu_active');
-    } 
-}
+
+
+function closeAllMenus(array, mainMenu) {
+    array.forEach(function (menu) {
+        (mainMenu === menu.closest('ul.menu_main')) ? menu.classList.remove('menu_active') : '';
+        });
+};
+arrMenuSub.forEach(function (menu) {
+    menu.previousElementSibling.onclick = function () {
+        if (menu.classList.contains('menu_active')) {
+            closeAllMenus(arrMenuSub, menu.closest('ul.menu_main'));
+            return false;
+        } else {
+            closeAllMenus(arrMenuSub, menu.closest('ul.menu_main'));
+            menu.classList.add('menu_active');
+            return false;
+        };
+    };
+});

@@ -8,18 +8,15 @@ function clickOnDropdown () {
     listMenu.classList.add('dropdown__list_active');
 };
 
-function changeText (event) {
-    event.preventDefault();
-    for (let i = 0; i < arrLinks.length; i++) {
-        // console.log(i)
-        let valueLink = arrLinks[i];
-        // console.log(valueLink)
-        menuActive.textContent = valueLink.closest('.dropdown__item');
-        console.log(valueLink.closest('.dropdown__item'))
-    }
-};
+arrLinks.forEach(elem => { 
+    elem.addEventListener('click', function (evt) {
+    evt.preventDefault();
+    menuActive.textContent = elem.textContent;
+    listMenu.classList.remove('dropdown__list_active');
+    });
+});
+
+
 
 menuActive.addEventListener("click", clickOnDropdown);
-listMenu.addEventListener("click", changeText);
 
-//почему то возвращает весь массив или он должен подставить ссылку 

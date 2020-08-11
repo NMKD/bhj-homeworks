@@ -15,19 +15,24 @@ class Game {
     this.winsElement.textContent = 0;
     this.lossElement.textContent = 0;
   }
-
+ //не понимаю как мне проверить this.currentSymbol/ нам не нужен его keyCode?
+ //как сравнить не понимаю ///
   registerEvents() {
     let symbol = Array.from(document.querySelectorAll('.symbol'));
-    this.keyPress = document.addEventListener('keydown', (evt) => {
-      for (let key of symbol) {
-        let strKey = String.fromCharCode(evt.keyCode);
-        if (strKey === key.textContent) {
-          this.success();
+    document.addEventListener('keydown', (evt) => {
+     symbol.forEach((currentValue, i, arr) => {
+       this.currentSymbol = String.fromCharCode(evt.keyCode);
+      // console.log(strKey.toLowerCase())
+
+      // console.log(currentValue.textContent.toLowerCase())
+       if (this.currentSymbol.toLowerCase() === currentValue.textContent.toLowerCase()) {
+        this.success();
         } else {
-          this.fail();
+        this.fail();
         }
-      }
-    });
+      });
+    }); 
+
 
     /*
       TODO:

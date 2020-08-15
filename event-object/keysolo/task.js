@@ -15,24 +15,17 @@ class Game {
     this.winsElement.textContent = 0;
     this.lossElement.textContent = 0;
   }
- //не понимаю как мне проверить this.currentSymbol/ нам не нужен его keyCode?
- //как сравнить не понимаю ///
+
   registerEvents() {
-    let symbol = Array.from(document.querySelectorAll('.symbol'));
-    document.addEventListener('keydown', (evt) => {
-     symbol.forEach((currentValue, i, arr) => {
-       this.currentSymbol = String.fromCharCode(evt.keyCode);
-      // console.log(strKey.toLowerCase())
-
-      // console.log(currentValue.textContent.toLowerCase())
-       if (this.currentSymbol.toLowerCase() === currentValue.textContent.toLowerCase()) {
-        this.success();
-        } else {
-        this.fail();
-        }
-      });
+    let symbols = Array.from(document.querySelectorAll('.symbol'));
+    let currentSymbolOfWord = this.currentSymbol.textContent;
+    console.log(currentSymbolOfWord)
+    document.addEventListener('keyup', (evt) => {
+       let currentValue = String.fromCharCode(evt.keyCode).toLowerCase();
+       console.log(currentValue)
+       currentSymbolOfWord == currentValue ? this.success() : this.fail();
     }); 
-
+    //теперь он принимает один символ. тоесть нужно еще реализовать чтобы он класс добавлял symbol_current следующей букве? 
 
     /*
       TODO:

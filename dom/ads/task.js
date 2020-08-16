@@ -2,7 +2,7 @@ const arrRotatorCase = Array.from(document.getElementsByClassName('rotator__case
 arrRotatorCase.forEach( (element) => {
     setInterval( () => {
        if (element.classList.contains('rotator__case_active'))  {
-          element.classList.remove('rotator__case_active');
+          element.classList.toggle('rotator__case_active');
           
         } else {
           element.classList.add('rotator__case_active');
@@ -12,4 +12,4 @@ arrRotatorCase.forEach( (element) => {
 });
 
 
-// почему то сохраняет значение textContent и прибавляет классы к старым значениям
+// как реализовать/чтобы textContent менялася, сейчас происходит конкатенация строк? 

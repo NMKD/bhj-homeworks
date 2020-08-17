@@ -3,39 +3,43 @@
 const slides = document.getElementsByClassName('slider__item');
 const prev = document.querySelector('.slider__arrow_prev');
 const next = document.querySelector('.slider__arrow_next');
+const sliderArrows = document.querySelector('slider__arrows')
 const arrSlides = Array.from(slides);
-let currentIndex = 0;
+
 
 prev.addEventListener('click', function() {
-    arrSlides.findIndex( function (currentValue, index) {
-        //    console.log(index)
-        //    console.log(currentValue)
-        //    console.log(arr)
-           if (currentValue.classList.contains('slider__item_active')) {
-               currentValue.classList.remove('slider__item_active');
-               finndCurrentIndex (index, arrSlides);
-               console.log( finndCurrentIndex (index, arrSlides));
-           } else {
-               currentValue.classList.add('slider__item_active');
-               finndCurrentIndex (index, arrSlides);
-           }
-        })
-
-
-        
+   let indexForSlide = findIndex(arrSlides);
+   arrSlides[indexForSlide].classList.remove('slider__item_active');
+   prevMin(indexForSlide, arrSlides);
 })
 
-function finndCurrentIndex (index, arr) {
+next.addEventListener('click', function() {
+    let indexForSlide = findIndex(arrSlides);
+    arrSlides[indexForSlide].classList.remove('slider__item_active');
+    nextPlus(indexForSlide, arrSlides);
+ })
 
-    if (index == 0) {
-        index++
-    } else if (index > arr.length) {
-        index = 0
-    } else {
-        index = arr.length
-    }
+function prevMin (ind, arr) {
+   ind--
+   arr[ind].classList.add('slider__item_active');
+   ind < 0 ? ind = arr.length : '';
+}
+
+function nextPlus (ind, arr) {
+    ind++
+    arr[ind].classList.add('slider__item_active');
+    ind > arr.length ? ind = 0 : '';
+ }
+
+function findIndex (arr) {
+    let classIncludesOfArr = document.querySelector('.slider__item_active');
+         // console.log(classIncludesOfArr)
+    return arr.indexOf(classIncludesOfArr);
 }
  
+// console.log(findIndex(arrSlides))
+
+
 
 
 //  renderWord(word) {

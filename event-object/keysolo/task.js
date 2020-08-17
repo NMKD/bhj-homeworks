@@ -17,15 +17,12 @@ class Game {
   }
 
   registerEvents() {
-    let symbols = Array.from(document.querySelectorAll('.symbol'));
-    let currentSymbolOfWord = this.currentSymbol.textContent;
-    console.log(currentSymbolOfWord)
     document.addEventListener('keyup', (evt) => {
+       let currentSymbolOfWord = this.currentSymbol.textContent;
        let currentValue = String.fromCharCode(evt.keyCode).toLowerCase();
-       console.log(currentValue)
        currentSymbolOfWord == currentValue ? this.success() : this.fail();
     }); 
-    //теперь он принимает один символ. тоесть нужно еще реализовать чтобы он класс добавлял symbol_current следующей букве? 
+     
 
     /*
       TODO:
